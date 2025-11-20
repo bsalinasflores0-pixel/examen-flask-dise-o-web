@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+    <link rel="stylesheet" href="/static/Ejercicio1styles.css">
+</head>
+<body>
+    <h1>Calculo de compras</h1>
+
+
+<a href="{{ url_for('index') }}" class="link-volver">Volver al menú</a>
+
+<div class="form-container">
+    <form method="POST" action="{{ url_for('ejercicio1') }}">
+
+        <p class="texto-input">Ingresa tu nombre</p>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <p class="texto-input">Ingresa tu edad</p>
+        <input type="number" id="edad" name="edad" min="0" required>
+
+        <p class="texto-input">Ingresa la cantidad de tarros de pintura a comprar</p>
+        <input type="number" id="cantidad" name="cantidad" min="1" required>
+
+        <button type="submit">Calcular</button>
+    </form>
+</div>
+
+{% if nombre is defined %}
+<div class="resultado">
+    <p>Nombre del cliente: {{ nombre }}</p>
+    <p>Edad: {{ edad }}</p>
+    <p>Cantidad de tarros: {{ cantidad }}</p>
+    <p>Total sin descuento: ${{ total_sin_desc | int }}</p>
+    <p>El descuento es: ${{ monto_desc | int }}</p>
+    <p>El total a pagar es: ${{ total_con_desc | int }}</p>
+</div>
+{% endif %}
+</body>
+</html>
